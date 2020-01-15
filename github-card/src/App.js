@@ -1,26 +1,38 @@
+  
 import React from 'react';
-import logo from './logo.svg';
+import Axios from 'axios';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import User from './components/User';
+import Followers from './components/Followers';
+
+class App extends React.Component {
+  //setup state
+  constructor() {
+    super();
+    this.state = {
+      myGitHub: {}
+    }
+  }
+
+  // ran once upon mount
+  componentDidMount() {
+    Axios.get('https://api.github.com/users/davebettswebdev')
+    .then(res => {
+      this.setState({myGitHub: res.data});
+      console.log(this.state);
+    })
+  }
+
+  //render component
+  render() {
+    return(
+      <div className='App'>
+        <User profile={this.state.myGitHub}/>
+        <Followers />
+      </div>
+    );
+  }
 }
 
 export default App;
