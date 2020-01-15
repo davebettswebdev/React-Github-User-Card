@@ -22,7 +22,7 @@ class Followers extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className='cards'>
                 {this.state.followers.map((element, index) => <FollowerCard key={index} userData={element}/>)}
             </div>
         );

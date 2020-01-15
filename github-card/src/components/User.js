@@ -3,7 +3,7 @@ import React from 'react';
 class User extends React.Component {
     render() {
         return(
-            <div className='user-card'>
+            <div className='my-card'>
                 <img src={this.props.profile.avatar_url}/>
                 <div>
                     <h3>{this.props.profile.name}</h3>
